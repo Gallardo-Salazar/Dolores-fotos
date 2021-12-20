@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/multi-style-layer.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="data/Zonasdevigordeagaves_2.js"></script>
+        <script src="data/Zonassinsubsoleo_3.js"></script>
+        <script src="data/Tablas_4.js"></script>
+        <script src="data/Fotos_5.js"></script>
+        <script>
+        var highlightLayer;
+        function highlightFeature(e) {
+            highlightLayer = e.target;
+            highlightLayer.openPopup();
+        }
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:20, minZoom:1
+        }).fitBounds([[20.803679591250024,-102.50445124676239],[20.81028903675,-102.49436889923763]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        map.createPane('pane_Ortomosaicodron_0');
+        map.getPane('pane_Ortomosaicodron_0').style.zIndex = 400;
+        var img_Ortomosaicodron_0 = 'data/Ortomosaicodron_0.png';
+        var img_bounds_Ortomosaicodron_0 = [[20.803836959000026,-102.50190102775936],[20.810131669,-102.49691911824067]];
+        var layer_Ortomosaicodron_0 = new L.imageOverlay(img_Ortomosaicodron_0,
+                                              img_bounds_Ortomosaicodron_0,
+                                              {pane: 'pane_Ortomosaicodron_0'});
+        bounds_group.addLayer(layer_Ortomosaicodron_0);
+        map.addLayer(layer_Ortomosaicodron_0);
+        map.createPane('pane_ndicedevegetacindron_1');
+        map.getPane('pane_ndicedevegetacindron_1').style.zIndex = 401;
+        var img_ndicedevegetacindron_1 = 'data/ndicedevegetacindron_1.png';
+        var img_bounds_ndicedevegetacindron_1 = [[20.803836958806944,-102.50189957205608],[20.8101316687594,-102.49692057346398]];
+        var layer_ndicedevegetacindron_1 = new L.imageOverlay(img_ndicedevegetacindron_1,
+                                              img_bounds_ndicedevegetacindron_1,
+                                              {pane: 'pane_ndicedevegetacindron_1'});
+        bounds_group.addLayer(layer_ndicedevegetacindron_1);
+        map.addLayer(layer_ndicedevegetacindron_1);
+        function pop_Zonasdevigordeagaves_2(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Media NDVI'] !== null ? autolinker.link(feature.properties['Media NDVI'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Zonasdevigordeagaves_2_0(feature) {
+            if (feature.properties['Media NDVI'] >= 0.000000 && feature.properties['Media NDVI'] <= 0.704334 ) {
+                return {
+                pane: 'pane_Zonasdevigordeagaves_2',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(215,25,28,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Media NDVI'] >= 0.704334 && feature.properties['Media NDVI'] <= 0.716758 ) {
+                return {
+                pane: 'pane_Zonasdevigordeagaves_2',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(254,201,129,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Media NDVI'] >= 0.716758 && feature.properties['Media NDVI'] <= 0.727883 ) {
+                return {
+                pane: 'pane_Zonasdevigordeagaves_2',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(196,230,135,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Media NDVI'] >= 0.727883 && feature.properties['Media NDVI'] <= 0.789765 ) {
+                return {
+                pane: 'pane_Zonasdevigordeagaves_2',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(26,150,65,1.0)',
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_Zonasdevigordeagaves_2');
+        map.getPane('pane_Zonasdevigordeagaves_2').style.zIndex = 402;
+        map.getPane('pane_Zonasdevigordeagaves_2').style['mix-blend-mode'] = 'normal';
+        var layer_Zonasdevigordeagaves_2 = new L.geoJson(json_Zonasdevigordeagaves_2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Zonasdevigordeagaves_2',
+            layerName: 'layer_Zonasdevigordeagaves_2',
+            pane: 'pane_Zonasdevigordeagaves_2',
+            onEachFeature: pop_Zonasdevigordeagaves_2,
+            style: style_Zonasdevigordeagaves_2_0,
+        });
+        bounds_group.addLayer(layer_Zonasdevigordeagaves_2);
+        map.addLayer(layer_Zonasdevigordeagaves_2);
+        function pop_Zonassinsubsoleo_3(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['area'] !== null ? autolinker.link(feature.properties['area'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['perimeter'] !== null ? autolinker.link(feature.properties['perimeter'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        var pattern_Zonassinsubsoleo_3_0 = new L.StripePattern({
+            weight: 0.3,
+            spaceWeight: 2.0,
+            color: '#404040',
+            opacity: 1.0,
+            spaceOpacity: 0,
+            angle: 315
+        });
+        pattern_Zonassinsubsoleo_3_0.addTo(map);
+        function style_Zonassinsubsoleo_3_0() {
+            return {
+                pane: 'pane_Zonassinsubsoleo_3',
+                stroke: false,
+                fillOpacity: 1,
+                fillPattern: pattern_Zonassinsubsoleo_3_0,
+                interactive: true,
+            }
+        }
+        var pattern_Zonassinsubsoleo_3_1 = new L.StripePattern({
+            weight: 0.3,
+            spaceWeight: 2.0,
+            color: '#404040',
+            opacity: 1.0,
+            spaceOpacity: 0,
+            angle: 225
+        });
+        pattern_Zonassinsubsoleo_3_1.addTo(map);
+        function style_Zonassinsubsoleo_3_1() {
+            return {
+                pane: 'pane_Zonassinsubsoleo_3',
+                stroke: false,
+                fillOpacity: 1,
+                fillPattern: pattern_Zonassinsubsoleo_3_1,
+                interactive: true,
+            }
+        }
+        function style_Zonassinsubsoleo_3_2() {
+            return {
+                pane: 'pane_Zonassinsubsoleo_3',
+                opacity: 1,
+                color: 'rgba(64,64,64,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 2.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Zonassinsubsoleo_3');
+        map.getPane('pane_Zonassinsubsoleo_3').style.zIndex = 403;
+        map.getPane('pane_Zonassinsubsoleo_3').style['mix-blend-mode'] = 'normal';
+        var layer_Zonassinsubsoleo_3 = new L.geoJson.multiStyle(json_Zonassinsubsoleo_3, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Zonassinsubsoleo_3',
+            layerName: 'layer_Zonassinsubsoleo_3',
+            pane: 'pane_Zonassinsubsoleo_3',
+            onEachFeature: pop_Zonassinsubsoleo_3,
+            styles: [style_Zonassinsubsoleo_3_0,style_Zonassinsubsoleo_3_1,style_Zonassinsubsoleo_3_2,]
+        });
+        bounds_group.addLayer(layer_Zonassinsubsoleo_3);
+        map.addLayer(layer_Zonassinsubsoleo_3);
+        function pop_Tablas_4(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Tabla</th>\
+                        <td>' + (feature.properties['Tabla'] !== null ? autolinker.link(feature.properties['Tabla'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Año de plantación</th>\
+                        <td>' + (feature.properties['Año de plantación'] !== null ? autolinker.link(feature.properties['Año de plantación'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Superficie aproximada (ha)</th>\
+                        <td>' + (feature.properties['Superficie aproximada (ha)'] !== null ? autolinker.link(feature.properties['Superficie aproximada (ha)'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Tablas_4_0() {
+            return {
+                pane: 'pane_Tablas_4',
+                opacity: 1,
+                color: 'rgba(194,194,194,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 2.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Tablas_4');
+        map.getPane('pane_Tablas_4').style.zIndex = 404;
+        map.getPane('pane_Tablas_4').style['mix-blend-mode'] = 'normal';
+        var layer_Tablas_4 = new L.geoJson(json_Tablas_4, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Tablas_4',
+            layerName: 'layer_Tablas_4',
+            pane: 'pane_Tablas_4',
+            onEachFeature: pop_Tablas_4,
+            style: style_Tablas_4_0,
+        });
+        bounds_group.addLayer(layer_Tablas_4);
+        map.addLayer(layer_Tablas_4);
+        function pop_Fotos_5(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['photo'] !== null ? '<img src="images/' + String(feature.properties['photo']).replace(/[\\\/:]/g, '_').trim() + '"width="250" >' : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Fotos_5_0() {
+            return {
+                pane: 'pane_Fotos_5',
+                radius: 6.4,
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,255,255,1.0)',
+                interactive: true,
+            }
+        }
+        function style_Fotos_5_1() {
+            return {
+                pane: 'pane_Fotos_5',
+                radius: 1.4,
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,0,0,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Fotos_5');
+        map.getPane('pane_Fotos_5').style.zIndex = 405;
+        map.getPane('pane_Fotos_5').style['mix-blend-mode'] = 'normal';
+        var layer_Fotos_5 = new L.geoJson.multiStyle(json_Fotos_5, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Fotos_5',
+            layerName: 'layer_Fotos_5',
+            pane: 'pane_Fotos_5',
+            onEachFeature: pop_Fotos_5,
+            pointToLayers: [function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_Fotos_5_0(feature));
+            },function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_Fotos_5_1(feature));
+            },
+        ]});
+        bounds_group.addLayer(layer_Fotos_5);
+        map.addLayer(layer_Fotos_5);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'<img src="legend/Fotos_5.png" /> Fotos': layer_Fotos_5,'<img src="legend/Tablas_4.png" /> Tablas': layer_Tablas_4,'<img src="legend/Zonassinsubsoleo_3.png" /> Zonas sin subsoleo': layer_Zonassinsubsoleo_3,'Zonas de vigor de agaves<br /><table><tr><td style="text-align: center;"><img src="legend/Zonasdevigordeagaves_2_Muybajo250.png" /></td><td>Muy bajo [25%]</td></tr><tr><td style="text-align: center;"><img src="legend/Zonasdevigordeagaves_2_Bajo201.png" /></td><td>Bajo [20%]</td></tr><tr><td style="text-align: center;"><img src="legend/Zonasdevigordeagaves_2_Medio232.png" /></td><td>Medio [23%]</td></tr><tr><td style="text-align: center;"><img src="legend/Zonasdevigordeagaves_2_Alto323.png" /></td><td>Alto [32%]</td></tr></table>': layer_Zonasdevigordeagaves_2,"Índice de vegetación dron": layer_ndicedevegetacindron_1,"Ortomosaico dron": layer_Ortomosaicodron_0,},{collapsed:false}).addTo(map);
+        setBounds();
+        L.ImageOverlay.include({
+            getBounds: function () {
+                return this._bounds;
+            }
+        });
+        </script>
+    </body>
+</html>
